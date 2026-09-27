@@ -1,0 +1,42 @@
+{
+  "name": "micro-tools-matrix",
+  "version": "0.1.0",
+  "description": "A zero-dependency TypeScript utility library with micro-tools for everyday tasks",
+  "type": "module",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json --declaration --declarationDir dist/types --emitDeclarationOnly --moduleResolution node && tsc -p tsconfig.build.json --module esnext --moduleResolution bundler --outDir dist/esm --declaration false --emitDeclarationOnly false && tsc -p tsconfig.build.json --module commonjs --moduleResolution node --outDir dist/cjs --declaration false --emitDeclarationOnly false && node scripts/fix-cjs.cjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm run test"
+  },
+  "keywords": [
+    "utils",
+    "tools",
+    "typescript",
+    "micro",
+    "library"
+  ],
+  "author": "chleya",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}
